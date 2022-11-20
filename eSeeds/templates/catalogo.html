@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    {% for sem in semillas %}
+        {{sem.nombre}}
+        {{sem.precio}}
+        {{sem.disponibilidad}}
+    {% endfor %}
+
+{% endblock %}
