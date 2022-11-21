@@ -19,7 +19,7 @@
             <div class="container-fluid">
                 
                 <!-- Logo -->
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand" href="{% url 'home' %}">
                     <span class="navbar-brand mb-0 h1">
                         <img src="{% static 'media/eseeds.png' %}" alt="" width="90">
                         <strong>eSeeds</strong>
@@ -36,19 +36,18 @@
                     
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="">Inicio</a>
+                            <a class="nav-link" href="{% url 'home' %}">Inicio</a>
                         </li>
 
                         <li class="nav-item">
                             <li class="nav-item me-3 me-lg-0 dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
-                                Administración
+                                Opciones disponibles
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="{% url 'catalogo' %}">Catálogo de semillas</a></li>
-                                    <li><a class="dropdown-item" href="#">Política de envío</a></li>
-                                    <li><a class="dropdown-item" href="#">Censo</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'politica_envio' %}">Política de envío gratuito</a></li>
                                 </ul>
                             </li>
                         </li>
