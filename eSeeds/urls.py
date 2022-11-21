@@ -4,5 +4,6 @@ from eSeeds import views
 
 urlpatterns = [
     path('', views.home, name= 'home'),
-    path('catalogo/', views.catalogo, name='catalogo')
+    path('catalogo/', views.catalogo, name='catalogo'),
+    path('politica_envio/', views.politica_envio, name='politica_envio'),
 ]

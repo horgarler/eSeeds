@@ -10,3 +10,6 @@ def catalogo(request):
     semillas = Semilla.objects.all()
     return render(request, 'catalogo.html', {'semillas':semillas})
     #esto devuelve todas las semillas de la base de datos (para el catalogo)
+
+def politica_envio(request):
+    return render(request, 'politica_envio.html')
