@@ -13,3 +13,9 @@ def catalogo(request):
 
 def politica_envio(request):
     return render(request, 'politica_envio.html')
+
+def datos_empresa(request):
+    return render(request, 'datos_empresa.html')
+
+def contacto(request):
+    return render(request, 'contacto.html')

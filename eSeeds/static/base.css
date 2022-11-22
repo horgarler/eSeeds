@@ -19,3 +19,15 @@
   .fit-content {
     width: fit-content !important;
   }
+
+.footer-text{
+  color: #0ff
+}
+
+.white-text{
+  color: #fff
+}
+
+.grey-text{
+  color: #ccc
+}
