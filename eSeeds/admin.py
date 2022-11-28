@@ -3,4 +3,4 @@ from eSeeds.models import *
 
 # Register your models here.
 
-admin.site.register(Semilla)
+admin.site.register(Producto)

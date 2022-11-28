@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Semilla(models.Model):
+class Producto(models.Model):
     
     # nombre (str), precio (float), descripción (text), disponibilidad (bool)
     nombre = models.CharField(max_length= 100, blank=False, null=False)
