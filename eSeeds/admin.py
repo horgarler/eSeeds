@@ -1,5 +1,5 @@
 from django.contrib import admin
-from eSeeds.models import *
+from eSeeds.models import Producto
 
 # Register your models here.
 
