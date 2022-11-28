@@ -8,4 +8,6 @@ urlpatterns = [
     path('politica_envio/', views.politica_envio, name='politica_envio'),
     path('datos_empresa/', views.datos_empresa, name='datos_empresa'),
     path('contacto/', views.contacto, name='contacto'),
+    path('catalogo/<int:producto_id>/', views.detalles_producto, name="producto"),
+    path('entrega/', views.entrega, name="entrega"),
 ]
