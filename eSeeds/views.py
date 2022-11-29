@@ -33,6 +33,12 @@ def datos_empresa(request):
 def contacto(request):
     return render(request, 'contacto.html')
 
+def privacy(request):
+    return render(request, 'privacy.html')
+
+def terms(request):
+    return render(request, 'terms.html')
+
 def entrega(request):
     return render(request, 'entrega.html')
 

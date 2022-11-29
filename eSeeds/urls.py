@@ -3,7 +3,7 @@ from django.urls import path
 from eSeeds import views
 
 urlpatterns = [
-    
+
     #Estaticas
     path('', views.home, name= 'home'),
     path('catalogo/', views.catalogo, name='catalogo'),
@@ -11,6 +11,8 @@ urlpatterns = [
     path('politica_devolucion/', views.politica_devolucion, name='politica_devolucion'),
     path('datos_empresa/', views.datos_empresa, name='datos_empresa'),
     path('contacto/', views.contacto, name='contacto'),
+    path('privacy/', views.privacy, name='privacy'),
+    path('terms/', views.terms, name='terms'),
     path('entrega/', views.entrega, name="entrega"),
 
     #Requieren id
