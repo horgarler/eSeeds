@@ -73,6 +73,12 @@
 
                 </div>
 
+                <!-- Buscador de productos -->
+                <form action="../catalogo/" method="GET">
+                    <input type="text" name="buscar" value="{{ query|escape }}" placeholder="Buscar producto...">
+                    <input type="submit" value="🔍︎">
+                </form>
+
             </div>
         </nav>
 

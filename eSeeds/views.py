@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
-
+from django.db.models import Q
 from eSeeds.models import *
 from eSeeds.carro import *
 
@@ -10,7 +10,14 @@ def home(request):
     return render(request, 'home.html')
 
 def catalogo(request):
+    busqueda = request.GET.get("buscar")
     productos = Producto.objects.all()
+
+    if busqueda:
+        productos = Producto.objects.filter(
+            Q(nombre__icontains = busqueda) | 
+            Q(descripcion__icontains = busqueda)
+        ).distinct()
     return render(request, 'catalogo.html', {'productos':productos})
     #esto devuelve todos los productos de la base de datos (para el catalogo)
 
@@ -25,6 +32,12 @@ def datos_empresa(request):
 
 def contacto(request):
     return render(request, 'contacto.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')
+
+def terms(request):
+    return render(request, 'terms.html')
 
 def entrega(request):
     return render(request, 'entrega.html')
