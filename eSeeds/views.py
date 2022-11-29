@@ -4,9 +4,7 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 
 from eSeeds.models import *
-
-
-# Create your views here.
+from eSeeds.carro import *
 
 def home(request):
     return render(request, 'home.html')
@@ -19,6 +17,9 @@ def catalogo(request):
 def politica_envio(request):
     return render(request, 'politica_envio.html')
 
+def politica_devolucion(request):
+    return render(request, 'politica_devolucion.html') 
+
 def datos_empresa(request):
     return render(request, 'datos_empresa.html')
 
@@ -27,6 +28,8 @@ def contacto(request):
 
 def entrega(request):
     return render(request, 'entrega.html')
+
+########################### FICHA PRODUCTO
 
 def detalles_producto(request, producto_id):
     if request.method == 'GET':
@@ -41,10 +44,39 @@ def detalles_producto(request, producto_id):
             ###############################
 
             #############AGREGAR PRODUCTO AL CARRITO###############
-            #carrito = Carrito(request)
-            #carrito.agregar(servicio)
+            #carro = Carro(request)
+            #carro.agregar(servicio)
             ###############################
 
-            #return redirect('carrito')
+            #return redirect('carro')
         except ValueError:
             return render(request, 'producto.html', {'producto': producto})
+
+
+################################ CARRO COMPRAS
+
+def carro(request):
+    return render(request, 'carro.html')
+
+def agregar_producto(request, producto_id):
+    carro = Carro(request)
+    producto = Producto.objects.get(id=producto_id)
+    carro.agregar(producto)
+    return redirect("carro")    #€l name que se le dio en urls.py
+
+def eliminar_producto(request, producto_id):
+    carro = Carro(request)
+    producto = Producto.objects.get(id=producto_id)
+    carro.eliminar(producto)
+    return redirect("carro")
+
+def restar_producto(request, producto_id):
+    carro = Carro(request)
+    producto = Producto.objects.get(id=producto_id)
+    carro.restar(producto)
+    return redirect("carro")
+
+def limpiar_carro(request):
+    carro = Carro(request)
+    carro.limpiar()
+    return redirect("carro")

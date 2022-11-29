@@ -66,6 +66,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
+                #funcion que gestiona el carro
+                'eSeeds.context_processor.total_carro',
             ],
         },
     },
