@@ -5,6 +5,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from eSeeds.models import *
 from eSeeds.carro import *
+from eSeeds.context_processor import *
+import stripe
+stripe.api_key = 'sk_test_51MBWRLBRQnkF6gUbkUCcj4WkFdD7iMoity5cyO2xZEibjFKOgvZ8WR34KZQIYbgnz7CHw2lyFvSZTCjHDtOlCcGW00FWkkQ1MN'
 
 def home(request):
     return render(request, 'home.html')
@@ -93,3 +96,36 @@ def limpiar_carro(request):
     carro = Carro(request)
     carro.limpiar()
     return redirect("carro")
+
+def contrareembolso(request):
+    return render(request, 'contrareembolso.html')
+
+def pasarela(request):
+    return render(request, 'pasarela.html')
+
+def cargo(request):
+    if request.POST:
+        cantidad = total_carro(request)
+        nombre = request.POST["nombre"]
+        apellidos = request.POST["apellidos"]
+        direccion = request.POST["direccion"]
+        poblacion = request.POST["poblacion"]
+        postal = request.POST["postal"]
+        email = request.POST["email"]
+        
+        customer = stripe.Customer.create(
+            name = nombre + apellidos,
+            email = email,
+            source = request.POST["stripeToken"]
+        )
+
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = cantidad,
+            currency = 'eur',
+            description = 'Pago articulos eSeeds'
+        )
+    redirect('pago_exitoso')    
+
+def pago_exitoso(request):
+    return render(request, 'pago_exitoso.html')
