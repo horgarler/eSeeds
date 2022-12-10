@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
+from eSeeds.forms import ClienteForm, atencionClienteForm
 from eSeeds.models import *
 from eSeeds.carro import *
 
@@ -93,3 +94,31 @@ def limpiar_carro(request):
     carro = Carro(request)
     carro.limpiar()
     return redirect("carro")
+
+##################### REGISTRO DE CLIENTE
+
+def registroCliente(request):
+    if request.method == 'GET':
+        return render(request, 'cliente.html', {'form' : ClienteForm})
+    else:
+        try:
+            form = ClienteForm(request.POST)
+            nuevo_cliente = form.save(commit= False)
+            nuevo_cliente.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'cliente.html', {'form' : ClienteForm, 'error' : form.errors})
+
+####################### ATENCION AL CLIENTE
+
+def atencion_cliente(request):
+    if request.method == 'GET':
+        return render(request, 'atencion_cliente.html', {'form' : atencionClienteForm})
+    else:
+        try:
+            form = atencionClienteForm(request.POST)
+            nuevo_cliente = form.save(commit= False)
+            nuevo_cliente.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'atencion_cliente.html', {'form' : atencionClienteForm, 'error' : form.errors})
