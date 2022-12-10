@@ -13,3 +13,14 @@ class Producto(models.Model):
 
     def __str__(self):
         return f'{self.nombre} -> {self.precio}'
+
+class Pedido(models.Model):
+    nombre = models.CharField(max_length=50)
+    apellidos = models.CharField(max_length=100)
+    direccion = models.TextField()
+    poblacion = models.CharField(max_length=50)
+    postal = models.IntegerField()
+    email = models.EmailField()
+
+    def str(self):
+        return self.nombre
