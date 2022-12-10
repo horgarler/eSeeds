@@ -24,4 +24,9 @@ urlpatterns = [
     path('eliminar/<int:producto_id>/', views.eliminar_producto, name="Del"),
     path('restar/<int:producto_id>/', views.restar_producto, name="Sub"),
     path('limpiar/', views.limpiar_carro, name="CLS"),
+
+    #registro y atencion cliente
+    path('registro_cliente/', views.registroCliente, name="registroCliente"),
+    path('atencion_cliente/', views.atencion_cliente, name="atencionCliente"),
+
 ]
