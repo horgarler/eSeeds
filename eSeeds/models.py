@@ -22,7 +22,6 @@ opciones_seguimiento = [
 ]
 
 class Pedido(models.Model):
-    id_pedido = models.TextField(null=True)
     nombre = models.CharField(max_length=50)
     apellidos = models.CharField(max_length=100)
     direccion = models.CharField(max_length=100)
@@ -43,10 +42,10 @@ class Cliente(models.Model):
 
 #Atención al cliente
 opciones_conultas = [
-    [0, "consulta"],
-    [1, "reclamo"],
-    [2, "sugerencia"],
-    [3, "felicitaciones"]
+    [0, "Consulta"],
+    [1, "Reclamo"],
+    [2, "Sugerencia"],
+    [3, "Felicitaciones"]
 ]
 
 class atencionCliente(models.Model):

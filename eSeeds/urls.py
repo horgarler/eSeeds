@@ -30,6 +30,7 @@ urlpatterns = [
     path('limpiar/', views.limpiar_carro, name="CLS"),
     path('cargo/', views.cargo, name="cargo"),
     path('contrareembolso/', views.contrareembolso, name="contrareembolso"),
+    path('cargo_contrareembolso/', views.cargo_contrareembolso, name="cargo_contrareembolso"),
     path('pasarela/', views.pasarela, name="pasarela"),
     path('pago_exitoso/', views.pago_exitoso, name="pago_exitoso"),
 
@@ -39,6 +40,8 @@ urlpatterns = [
     #registro y atencion cliente
     path('registro_cliente/', views.registroCliente, name="registroCliente"),
     path('atencion_cliente/', views.atencion_cliente, name="atencionCliente"),
+    path('mandar_correo/', views.mandar_correo, name="mandar_correo"),
+    path('correo_exitoso/', views.correo_exitoso, name="correo_exitoso"),
 
     #imagenes
 
