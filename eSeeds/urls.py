@@ -24,6 +24,13 @@ urlpatterns = [
     path('eliminar/<int:producto_id>/', views.eliminar_producto, name="Del"),
     path('restar/<int:producto_id>/', views.restar_producto, name="Sub"),
     path('limpiar/', views.limpiar_carro, name="CLS"),
+    path('cargo/', views.cargo, name="cargo"),
+    path('contrareembolso/', views.contrareembolso, name="contrareembolso"),
+    path('pasarela/', views.pasarela, name="pasarela"),
+    path('pago_exitoso/', views.pago_exitoso, name="pago_exitoso"),
+
+    #Seguimiento
+    path('seguimiento/', views.seguimiento, name="seguimiento"),
 
     #registro y atencion cliente
     path('registro_cliente/', views.registroCliente, name="registroCliente"),

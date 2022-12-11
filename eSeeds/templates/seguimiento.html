@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<br>
+<div class="container-fluid">
+  <form method="get">
+    <div id="custom-search-input" align = "center">
+      <div class="input-group col-md-12">
+        <input type="text" class="from-control" placeholder="Buscar por ID" name="buscar">
+        <span class="input-group-list">
+          <button type="submit" class="boton btn-success">Buscar</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  {% if seguimiento.count > 0 %}
+  <table border="12" style="margin: 0 auto;"  id="table">
+    <tr>
+        <td align="center"><strong>Nombre</td></strong>
+        <td align="center"><strong>Estado</td></strong>
+    </tr>
+    {% for s in seguimiento %}
+        <tr>
+            <td>{{s.nombre}}</td>
+
+            {% if s.seguimiento == 0 %}
+            <td>Procesando</td>
+            {% elif s.seguimiento == 1 %}
+            <td>En envío</td>
+            {% elif s.seguimiento == 2 %}
+            <td>Entregado</td>
+            {% endif %}
+        </tr>
+     {% endfor %}
+    </table>
+  {% endif %}
+</div>
+<br>
+<br>
+{% endblock %}
