@@ -30,8 +30,10 @@
                         <div class="col-4">
                             <div class="card" style="height: 10rem; width: 23rem; margin: 5px 0px;">
                                 <div class="card-body">
+                                    <!-- Falta imagen -->
                                     <h5 class="card-title">{{producto.nombre}}</h5>
                                     <p class="card-text">{{producto.precio}}</p>
+                                    <a href="{% url 'producto' producto.id %}" class="btn btn-secondary">Producto al detalle</a>
                                     <a href="{% url 'Add' producto.id %}" class="btn btn-primary">Agregar al carrito</a>
                                 </div>
                             </div>
