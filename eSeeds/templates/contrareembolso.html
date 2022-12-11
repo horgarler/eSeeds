@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <head>
+        <title>{% block title %} Pago {% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <div class="container" style="text-align:center">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="display-1">CARRO DE COMPRA</h1>
+
+                    <div class="row text-left alert alert-primary">
+                        <div class="col-2"><p> </p></div>
+                        <div class="col-8 align-left" role="alert">
+                            <form> <!-- Crear con un for -->>
+                                <label for="nombre">Nombre: </label>
+                                <input type="text" id="nombre" name="nombre"><br><br>
+                                <label for="apellidos">Apellidos: </label>
+                                <input type="text" id="apellidos" name="apellidos"><br><br>
+                                <label for="direccion">Dirección: </label>
+                                <input type="text" id="direccion" name="direccion"><br><br>
+                                <label for="poblacion">Población: </label>
+                                <input type="text" id="poblacion" name="poblacion"><br><br>
+                                <label for="postal">Código postal: </label>
+                                <input type="text" id="postal" name="postal"><br><br>
+                                <label for="email">Email: </label>
+                                <input type="text" id="email" name="email"><br><br>    
+                            </form>
+                        </div>
+                        <div class="col-2"><p> </p></div>
+                    </div>
+
+                    <div class="row text-center">
+                        <div class="col-6"><a href="/pago_exitoso" class="btn btn-success">Realizar pedido</a></div>
+                    </div>
+
+                </div>
+            </div>       
+        </div>
+
+    </body>
+
+{% endblock %}

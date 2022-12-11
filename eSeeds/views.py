@@ -6,6 +6,9 @@ from django.db.models import Q
 from eSeeds.forms import ClienteForm, atencionClienteForm
 from eSeeds.models import *
 from eSeeds.carro import *
+from eSeeds.context_processor import *
+import stripe
+stripe.api_key = 'sk_test_51MBWRLBRQnkF6gUbkUCcj4WkFdD7iMoity5cyO2xZEibjFKOgvZ8WR34KZQIYbgnz7CHw2lyFvSZTCjHDtOlCcGW00FWkkQ1MN'
 
 def home(request):
     return render(request, 'home.html')
@@ -95,6 +98,59 @@ def limpiar_carro(request):
     carro.limpiar()
     return redirect("carro")
 
+def contrareembolso(request):
+    return render(request, 'contrareembolso.html')
+
+def pasarela(request):
+    return render(request, 'pasarela.html')
+
+def cargo(request):
+    if request.POST:
+        
+        nombre = request.POST["nombre"]
+        apellidos = request.POST["apellidos"]
+        direccion = request.POST["direccion"]
+        poblacion = request.POST["poblacion"]
+        postal = request.POST["postal"]
+        email = request.POST["email"]
+        
+        customer = stripe.Customer.create(
+            name = nombre + apellidos,
+            email = email,
+            source = request.POST["stripeToken"]
+        )
+
+        cantidad = total_carro(request)
+        valor = int(cantidad.get('total_carro'))
+        id_pedido = request.POST['stripeToken']
+
+        charge = stripe.Charge.create(
+            customer = customer,
+            amount = valor*1000,
+            currency = 'eur',
+            description = 'Pago exitoso'
+        )
+
+        for key, value in request.session.items():
+            if key == 'carro':
+                for id in value:
+                    producto_id = value[id]['producto_id']
+                    message = "Pedido realizado, datos de envío:\n" + str(nombre) + " " + str(apellidos) + "\n" + str(direccion) + " " + str(poblacion) + " (" + str(postal) + ")\nCon email de contacto: " + str(email) + "\n\nId del pedido: " + str(id_pedido)
+    
+        subject = "Pago exitoso"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST['email']]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        carro = Carro(request)
+        carro.limpiar()
+        
+    redirect('pago_exitoso')    
+
+def pago_exitoso(request):
+    return render(request, 'pago_exitoso.html')
+
 ##################### REGISTRO DE CLIENTE
 
 def registroCliente(request):
@@ -122,3 +178,4 @@ def atencion_cliente(request):
             return redirect('home')
         except ValueError:
             return render(request, 'atencion_cliente.html', {'form' : atencionClienteForm, 'error' : form.errors})
+
