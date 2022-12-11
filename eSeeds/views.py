@@ -105,7 +105,7 @@ def pasarela(request):
 
 def cargo(request):
     if request.POST:
-        cantidad = total_carro(request)
+        
         nombre = request.POST["nombre"]
         apellidos = request.POST["apellidos"]
         direccion = request.POST["direccion"]
@@ -119,12 +119,32 @@ def cargo(request):
             source = request.POST["stripeToken"]
         )
 
+        cantidad = total_carro(request)
+        valor = int(cantidad.get('total_carro'))
+        id_pedido = request.POST['stripeToken']
+
         charge = stripe.Charge.create(
             customer = customer,
-            amount = cantidad,
+            amount = valor*1000,
             currency = 'eur',
-            description = 'Pago articulos eSeeds'
+            description = 'Pago exitoso'
         )
+
+        for key, value in request.session.items():
+            if key == 'carro':
+                for id in value:
+                    producto_id = value[id]['producto_id']
+                    message = "Pedido realizado, datos de envío:\n" + str(nombre) + " " + str(apellidos) + "\n" + str(direccion) + " " + str(poblacion) + " (" + str(postal) + ")\nCon email de contacto: " + str(email) + "\n\nId del pedido: " + str(id_pedido)
+    
+        subject = "Pago exitoso"
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST['email']]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        carro = Carro(request)
+        carro.limpiar()
+        
     redirect('pago_exitoso')    
 
 def pago_exitoso(request):
