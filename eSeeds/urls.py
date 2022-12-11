@@ -10,7 +10,6 @@ urlpatterns = [
     path('politica_envio/', views.politica_envio, name='politica_envio'),
     path('politica_devolucion/', views.politica_devolucion, name='politica_devolucion'),
     path('datos_empresa/', views.datos_empresa, name='datos_empresa'),
-    path('contacto/', views.contacto, name='contacto'),
     path('privacy/', views.privacy, name='privacy'),
     path('terms/', views.terms, name='terms'),
     path('entrega/', views.entrega, name="entrega"),
