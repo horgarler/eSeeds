@@ -31,9 +31,6 @@ def politica_devolucion(request):
 def datos_empresa(request):
     return render(request, 'datos_empresa.html')
 
-def contacto(request):
-    return render(request, 'contacto.html')
-
 def privacy(request):
     return render(request, 'privacy.html')
 
