@@ -122,7 +122,7 @@ def cargo_contrareembolso(request):
                 for id in value:
                     producto_id = value[id]['producto_id']
                     lista_carro += "· " + str(value[id]['nombre']) + ' Cantidad: ' + str(value[id]['cantidad']) + "\n"
-                    message = "Pedido realizado, datos de envío:\n" + str(nombre) + " " + str(apellidos) + "\n" + str(direccion) + " " + str(poblacion) + " (" + str(postal) + ")\nCon email de contacto: " + str(email) + "\n\nId del pedido: " + str(pedido_list.id) + '\n' + str(lista_carro) + "\nCoste total: " + str(valor) + "€\nPor Favor tenga preparado el dinero para cuando llegue su pedido para poder pagar al repartidor.\n\nGracias por confiar en nuestros servicios.\n\n"
+                    message = "Pedido realizado, datos de envío:\n" + str(nombre) + " " + str(apellidos) + "\n" + str(direccion) + " " + str(poblacion) + " (" + str(postal) + ")\nCon email de contacto: " + str(email) + "\n\nId del pedido: " + str(pedido_list.id) + '\n' + str(lista_carro) + "\nCoste total: " + str(valor) + "€\nPor favor tenga preparado el dinero para cuando llegue su pedido para poder pagar al repartidor.\n\nGracias por confiar en nuestros servicios.\n\n"
     
         subject = "Pago exitoso"
         email_from = EMAIL_HOST_USER
