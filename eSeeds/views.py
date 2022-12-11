@@ -9,6 +9,7 @@ from eSeeds.carro import *
 from eSeeds.context_processor import *
 from django.core.mail import send_mail
 from semillas.settings import EMAIL_HOST_USER
+from django.conf import settings
 import stripe
 stripe.api_key = 'sk_test_51MBWRLBRQnkF6gUbkUCcj4WkFdD7iMoity5cyO2xZEibjFKOgvZ8WR34KZQIYbgnz7CHw2lyFvSZTCjHDtOlCcGW00FWkkQ1MN'
 
@@ -24,7 +25,7 @@ def catalogo(request):
             Q(nombre__icontains = busqueda) | 
             Q(descripcion__icontains = busqueda)
         ).distinct()
-    return render(request, 'catalogo.html', {'productos':productos})
+    return render(request, 'catalogo.html', {'productos':productos, 'MEDIA_URL': settings.MEDIA_URL})
     #esto devuelve todos los productos de la base de datos (para el catalogo)
 
 def politica_envio(request):
@@ -50,21 +51,13 @@ def entrega(request):
 def detalles_producto(request, producto_id):
     if request.method == 'GET':
         producto = get_object_or_404(Producto, pk=producto_id)
-        return render(request, 'producto.html', {'producto': producto}) #se le pasa lo que está entre ''
+        return render(request, 'producto.html', {'producto': producto, 'MEDIA_URL': settings.MEDIA_URL}) #se le pasa lo que está entre ''
     else:   #(POST en la mayoria)
         try:
             producto = get_object_or_404(Producto, pk=producto_id)
             ##SETEAR ATRIBUTO ENN BBDD
             setattr(producto, 'disponibilidad', True)
             producto.save()
-            ###############################
-
-            #############AGREGAR PRODUCTO AL CARRITO###############
-            #carro = Carro(request)
-            #carro.agregar(servicio)
-            ###############################
-
-            #return redirect('carro')
         except ValueError:
             return render(request, 'producto.html', {'producto': producto})
 

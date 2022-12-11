@@ -1,8 +1,13 @@
 from django.contrib import admin
 from django.urls import path
 from eSeeds import views
+from django.conf.urls.static import static
+from django.conf import settings
+import django.views
+
 
 urlpatterns = [
+    path('media/<path>', django.views.static.serve, {'document_root': settings.MEDIA_ROOT}),
 
     #Estaticas
     path('', views.home, name= 'home'),
@@ -38,4 +43,6 @@ urlpatterns = [
     path('mandar_correo/', views.mandar_correo, name="mandar_correo"),
     path('correo_exitoso/', views.correo_exitoso, name="correo_exitoso"),
 
-]
+    #imagenes
+
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

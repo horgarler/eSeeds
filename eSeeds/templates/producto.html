@@ -10,13 +10,24 @@
 
     <body>
         <div class="container" style="text-align:center">
+            <br>
             <h1 class="titulo-producto">{{producto.nombre}}</h1>
 
+            <img src= "{{MEDIA_URL}}{{producto.imagen}}"  width=250px height=250px>
+
             <div class="row" style="text-align:center">       
-                <h5>{{producto.precio}}</h5>
-                <h5>{{producto.descripcion}}</h5>        
-                <h5>{{producto.disponibilidad}}</h5>
+                <h5>Precio por cada 100 gramos: {{producto.precio}}</h5><br><br>
+                <h5>Descripción:</h5><br>
+                <p>{{producto.descripcion}}</p>
+
+                <br><br> 
+                {% if producto.disponibilidad == True %}
+                    <h5>Disponibilidad: ✅<h5>       
+                {% else %}
+                    <h5>Disponibilidad: ❌<h5>  
+                {% endif %}
             </div>
+            <br>
         </div>
     </body>
 
