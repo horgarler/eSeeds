@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 
-{% block content %}
+{% block content %} 
 
-<div class="col-sm-6" align="center">
-    <p>{{error}}</p>
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_div}}
-            <input type="checkbox" name="agree" onclick="" required />
-            <a href='/terms' for="agree">Acepto los términos y condiciones...</a><br><br>
+<div class="container">
+    <div align="center">
+        
+        <br>
+        <h1 class="display-3">REGISTRO DE CLIENTE</h1>
+        <br>
 
+        <p>{{error}}</p>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_div}}
+                <br>
+                <input type="checkbox" name="agree" onclick="" required />
+                <a href='/terms' for="agree">Acepto los términos y condiciones...</a><br><br>
 
-            <button type="submit" name='next' class="btn btn-lg btn-success">Registro</button>
+                <button type="submit" name='next' class="btn btn-lg btn-success">Registro</button>
+            </form>
+            <br>
         </form>
-    </form>
+    </div>
 </div>
 
 {% endblock %}

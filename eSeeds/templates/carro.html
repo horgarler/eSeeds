@@ -18,12 +18,13 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="row" colspan="3" class="text-center">CARRITO</th>
+                                    <th scope="row" colspan="4" class="text-center">CARRITO</th>
                                 </tr>
                                 <tr>
                                     <th scope="col">NOMBRE</th>
-                                    <th scope="col">PRECIO</th>
                                     <th scope="col">CANTIDAD</th>
+                                    <th scope="col">TOTAL € PRODUCTO</th>
+                                    <th scope="col">AÑADIR/RESTAR</th>
                                 </tr>
                             </thead>
 
@@ -32,16 +33,16 @@
                             {% for key, value in request.session.carro.items %}
                                 <tr>
                                     <td>{{value.nombre}}</td>
-                                    <td>{{value.precio}}</td>
-                                    <td>{{value.acumulado}}
-                                        <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                                    <td>{{value.cantidad}}</td>
+                                    <td>{{value.acumulado}}€</td>
+                                    <td><a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
                                         <a href="{% url 'Sub' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
                                     </td>
                                 </tr>
                             {% endfor %}
                             {% else %}
                             <tr>
-                                <td colspan="3">
+                                <td colspan="4">
                                     <div class="alert alert-danger text-center"> Sin Productos </div>
                                 </td>
                             </tr>

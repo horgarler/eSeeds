@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,6 +27,8 @@ SECRET_KEY = 'django-insecure-ru@_(76d$69+^n7ad#qkuv4!iuye*0i+h!p6))aa@fy!q=b9mr
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+
 
 
 # Application definition
@@ -136,6 +139,7 @@ EMAIL_PORT=587
 EMAIL_HOST_USER="eseedspgpi@gmail.com"
 EMAIL_HOST_PASSWORD="doolsujzmvhftpce"
 
-
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'
 
 
