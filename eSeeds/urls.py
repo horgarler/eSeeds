@@ -29,6 +29,9 @@ urlpatterns = [
     path('pasarela/', views.pasarela, name="pasarela"),
     path('pago_exitoso/', views.pago_exitoso, name="pago_exitoso"),
 
+    #Seguimiento
+    path('seguimiento/', views.seguimiento, name="seguimiento"),
+
     #registro y atencion cliente
     path('registro_cliente/', views.registroCliente, name="registroCliente"),
     path('atencion_cliente/', views.atencion_cliente, name="atencionCliente"),
